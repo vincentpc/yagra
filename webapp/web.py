@@ -35,9 +35,9 @@ class Httprequest(object):
         sys.stdout.write(text)
 
     @property
-    def set_cookies(self):
+    def get_cookies(self):
         if not hasattr(self, "_cookies"):
-            self._cookies = Cookie.SerialCookie()
+            self._cookies = Cookie.SimpleCookie()
             if self.cookies_str:
                 self._cookies.load(self.cookies_str)
         return self._cookies
@@ -81,6 +81,16 @@ class BaseHandler(object):
     def clear_header(self, name):
         if name in self._headers:
             del self._headers[name]
+
+    def get_cookies(self):
+        return self.request.get_cookies()
+
+    def set_cookie(self, name, value, expires = None, expires_days = None, max_age = None, path = "/"):
+        
+        if not hasattr(self, "_new_cookie"):
+            self._new_cookie = Cookie.SimpleCookie()
+
+
 
     def gen_headers(self):
         status_expr = httplib.responses[self._status_code]
