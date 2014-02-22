@@ -1,36 +1,39 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-from webapp.web import Swebapp
+from datetime import date
+import time
+
+from webapp.web import Application, BaseHandler
+
 
 URLS = (
     ("/", "Index"),
     ("/hello/(.*)", "Hello"),
 )
 
-WSGIAPP = Swebapp(URLS, globals())
+
+class Index(BaseHandler):
+
+    def get(self):
+        header = "Content-type:text/html\r\n\r\n"
+        # self.write(header+"Welcome~")
+
+        body = self.wrap_html('static/index.html')
+        self.write(header)
+        self.write(body)
 
 
-class Index:
+class Hello(BaseHandler):
 
-    def GET(self):
-        Swebapp.header('Content-type', 'text/plain')
-        return "Welcome~"
+    def get(self, name):
 
-
-class Hello:
-
-    def GET(self, name):
-        Swebapp.header('Content-type', 'text/plain')
-        return "hello %s\n" % name
-
+        params = {'name': name, 'date': date.today(), 'time': time.time()}
+        header = "Content-type:text/html\r\n\r\n"
+        body = self.wrap_html('static/hello.html', params)
+        self.write(header)
+        self.write(body)
 
 if __name__ == '__main__':
-
-    from wsgiref.simple_server import make_server
-
-    httpd = make_server('', 8086, WSGIAPP)
-    sa = httpd.socket.getsockname()
-    print 'http://{0}:{1}/'.format(*sa)
-
-    httpd.serve_forever()
+    app = Application(globals(), URLS)
+    app.run()
