@@ -6,8 +6,8 @@ import cgi
 import Cookie
 import re
 import sys
-
-default_headers = {"Content-type": "text/plain"}
+import httplib
+import json
 
 
 class Httprequest(object):
@@ -44,6 +44,7 @@ class Httprequest(object):
 
 
 class TemplateWrapper(object):
+
     def __init__(self):
         pass
 
@@ -53,6 +54,7 @@ class TemplateWrapper(object):
         if params:
             body = body % params
         return body
+
 
 class BaseHandler(object):
 
@@ -64,13 +66,57 @@ class BaseHandler(object):
         self.clear()
 
     def clear(self):
+        self._headers = {
+            "Content-Type": "text/html; charset=UTF-8"
+        }
         self._status_code = 200
 
+    def set_status(self, status):
+        assert status in httplib.responses
+        self._status_code = status
+
+    def set_header(self, name, value):
+        self._headers[name] = str(value)
+
+    def clear_header(self, name):
+        if name in self._headers:
+            del self._headers[name]
+
+    def gen_headers(self):
+        status_expr = httplib.responses[self._status_code]
+        header_line = ["Status: %d %s" % (self._status_code, status_expr)]
+
+        for name, value in self._headers.iteritems():
+            header_line.append("%s: %s" % (name, value))
+
+        #if hasattr(self, "_new_cookie"):
+            #for cookie in self._new_cookie.values():
+            #    header_line.append("Set-Cookie: " + cookie.OutputString(None))
+
+        return "\r\n".join(header_line) + "\r\n\r\n"
+
     def write(self, text):
-        self.request.write(text)
+        if isinstance(text, dict):
+            #text = json_encode(text)
+
+            self.set_header("Content-Type", "application/json; charset=UTF-8")
+
+        resp_body = text
+        resp_header = self.gen_headers()
+        self.request.write(resp_header)
+        self.request.write(resp_body)
 
     def wrap_html(self, path, params=None):
         return TemplateWrapper.wrap_html(path, params)
+
+
+class ErrorHandler(BaseHandler):
+
+    def get(self):
+        self.set_status(404)
+
+        body = "Page Not Found"
+        self.write(body)
 
 
 class Application(object):
@@ -85,7 +131,7 @@ class Application(object):
     def get_request(self):
         env = os.environ
 
-        headers = default_headers
+        headers = []
 
         request = Httprequest(
             unicode(env["REQUEST_METHOD"], encoding="utf-8"),
@@ -115,10 +161,8 @@ class Application(object):
                     meth = getattr(cls, func)
                     return meth(handler, *args)
 
-        return self._notfound()
-
-    def _notfound(self):
-        self._status = '404 Not Found'
+        handler = ErrorHandler(self, self._request)
+        return handler.get()
 
     def handle(self):
         self._request = self.get_request()
