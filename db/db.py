@@ -10,8 +10,24 @@ db = MySQLdb.connect(host="localhost",
                      charset="utf8")
 
 
-def test_insert():
-    pass
+def test_insert(name = "vincent"):
+    import time
+
+    sqlstr = """
+        INSERT INTO `yagra`.`yagra_user`
+        (
+        `user_login`,
+        `user_passwd`,
+        `user_email`,
+        `user_time`
+        )
+        VALUES
+        (%s, %s, %s, %s)
+    """
+    c = db.cursor()
+    c.execute(sqlstr,(name,"1234",name+"@gmail.com",
+                         time.strftime('%Y-%m-%d %H:%M:%S')))
+    db.commit()
 
 
 def test_select():
@@ -24,7 +40,8 @@ def test_select():
 
 
 def dbtest():
-    test_insert()
+    import sys
+    test_insert(sys.argv[1])
     test_select()
     db.close()
 
