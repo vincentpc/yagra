@@ -28,7 +28,7 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" action="/signin" method="POST">
         <h2 class="form-signin-heading">Yagra</h2>
         <input type="email" class="form-control" placeholder="Email address" required autofocus>
         <input type="password" class="form-control" placeholder="Password" required>
@@ -36,9 +36,12 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>
 
+      <form class="form-signin" role="form" action="/register" method="GET">
+        <h4 class="form-signin-heading">First Time? Register here</h4>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
     </div> <!-- /container -->
 
 
