@@ -7,7 +7,9 @@ import Cookie
 import re
 import sys
 import httplib
-import json
+import datetime
+import calendar
+import email.utils
 
 
 class Httprequest(object):
@@ -85,12 +87,33 @@ class BaseHandler(object):
     def get_cookies(self):
         return self.request.get_cookies()
 
-    def set_cookie(self, name, value, expires = None, expires_days = None, max_age = None, path = "/"):
-        
+    def set_cookie(self, name, value, expires=None,
+                   expires_days=None, max_age=None, path="/"):
         if not hasattr(self, "_new_cookie"):
             self._new_cookie = Cookie.SimpleCookie()
+        self._new_cookie[name] = value
+        if path:
+            self._new_cookie[name][path] = path
+        if max_age:
+            self._new_cookie[name][max_age] = max_age
+        if expires_days is not None and not expires:
+            expires = datetime.datetime.utcnow() + datetime.timedelta(
+                days=expires_days)
+        if expires:
+            timestamp = calendar.timegm(expires.utctimetuple)
+            format_timestamp = email.utils.formatdate(
+                timestamp, localtime=False, usegmt=True)
+            self._new_cookie[name][expires] = format_timestamp
 
+    def clear_cookie(self, name):
+        # 100 days for expires
+        expires = datetime.datetime.utcnow() - datetime.timedelta(days = 100) 
+        self.set_cookie(name, value = "", expires = expires)
 
+    def clear_cookies(self):
+        all_cookies = self.get_cookies()
+        for name in all_cookies.iterkeys():
+            self.clear_cookie(name)
 
     def gen_headers(self):
         status_expr = httplib.responses[self._status_code]
@@ -99,11 +122,17 @@ class BaseHandler(object):
         for name, value in self._headers.iteritems():
             header_line.append("%s: %s" % (name, value))
 
-        #if hasattr(self, "_new_cookie"):
-            #for cookie in self._new_cookie.values():
-            #    header_line.append("Set-Cookie: " + cookie.OutputString(None))
+        if hasattr(self, "_new_cookie"):
+            for cookie in self._new_cookie.values():
+                header_line.append("Set-Cookie: " + cookie.OutputString(None))
 
         return "\r\n".join(header_line) + "\r\n\r\n"
+
+    def get_args(self, name, default = []):
+        args = []
+        for arg in self.request.args.get(name, []):
+            args.append(arg)
+        return args
 
     def write(self, text):
         if isinstance(text, dict):
