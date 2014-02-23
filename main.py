@@ -6,11 +6,22 @@ import time
 
 from webapp.web import Application, BaseHandler
 
-
 URLS = (
     ("/", "Index"),
     ("/hello/(.*)", "Hello"),
+    ("/register?", "RegisterHandler")
 )
+
+
+class RegisterHandler(BaseHandler):
+
+    def get(self, error=""):
+        params = {'error_info': error}
+        body = self.wrap_html('static/register.html', params)
+        self.write(body)
+
+    def post(self):
+        pass
 
 
 class Index(BaseHandler):
