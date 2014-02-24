@@ -10,6 +10,7 @@ import httplib
 import datetime
 import calendar
 import email.utils
+import urlparse
 
 
 class Httprequest(object):
@@ -107,8 +108,8 @@ class BaseHandler(object):
 
     def clear_cookie(self, name):
         # 100 days for expires
-        expires = datetime.datetime.utcnow() - datetime.timedelta(days = 100) 
-        self.set_cookie(name, value = "", expires = expires)
+        expires = datetime.datetime.utcnow() - datetime.timedelta(days=100)
+        self.set_cookie(name, value="", expires=expires)
 
     def clear_cookies(self):
         all_cookies = self.get_cookies()
@@ -128,11 +129,15 @@ class BaseHandler(object):
 
         return "\r\n".join(header_line) + "\r\n\r\n"
 
-    def get_args(self, name, default = []):
+    def get_args(self, name, default=[]):
         args = []
         for arg in self.request.args.get(name, []):
             args.append(arg)
         return args
+
+    def redirect(self, url, permanent=False):
+        self.set_status(302)
+        self.set_header("Location", urlparse.urljoin(self.request.uri, url))
 
     def write(self, text):
         if isinstance(text, dict):
