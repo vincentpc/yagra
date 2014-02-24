@@ -4,6 +4,7 @@
 from datetime import date
 import time
 import hashlib
+import os
 
 from webapp.web import Application, BaseHandler
 from model import dbapi
@@ -76,7 +77,11 @@ class UserHandler(BaseHandler):
         m.update(self.email)
         email_md5 = m.hexdigest()
         fn = "images/" + email_md5
-        params = {'name': self.email, 'time': self.time, 'imagepath': fn}
+        if os.path.isfile(fn):
+            imagetag =  """<img src="%s" class="rounded" alt="Upload Image Below">""" % fn
+        else:
+            imagetag = """<p>Avatar Not Available. Upload One!</p>"""
+        params = {'name': self.email, 'time': self.time, 'image': imagetag}
         body = self.wrap_html('templates/user.html', params)
         self.write(body)
 

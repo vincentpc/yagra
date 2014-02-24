@@ -51,13 +51,12 @@
 
         <p>Email: %(name)s</p>
         <p>Register Time: %(time)s</p>
-        <img src="%(imagepath)s" class="img-circle" alt="Upload Image Below"> 
+        %(image)s
         <p>
         <form role="form" enctype="multipart/form-data" action="/upload" method="POST">
-          <div class="form-group">
-            <label for="exampleInputFile">File input</label>
+            <div class="form-group">
+                <p class="help-block">Upload New Avatar</p>
             <input type="file" name="filename">
-            <p class="help-block">Upload a Picture</p>
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
       </form>
@@ -70,7 +69,5 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
   </body>
 </html>
