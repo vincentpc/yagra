@@ -17,8 +17,8 @@ URLS = (
 
 class UserHandler(BaseHandler):
     def check(self):
-       
-        self.email = "test"
+         
+        self.email = self.get_secure_cookie("email")
 
     def get(self):
         self.check()
@@ -39,15 +39,17 @@ class RegisterHandler(BaseHandler):
         password = self.get_arg('password')
 
         user = dbapi.User()
+        error = ""
         if email:
-            if user.get_user(email) == -1:
+            if user.get_user(email) == 0:
                 error = "user already exist"
-
-            result = user.insert_user(email, password)
-            if result != -1:
-                self.redirect("/user")
             else:
-                error = "insert falure, try again later"
+                result = user.insert_user(email, password)
+                if result != -1:
+                    self.set_secure_cookie('email', str(email))
+                    self.redirect("/user")
+                else:
+                    error = "insert falure, try again later"
         else:
             error = "missing argument"
 

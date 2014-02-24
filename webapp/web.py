@@ -12,6 +12,9 @@ import calendar
 import email.utils
 import urlparse
 
+import webapp.utils as tool 
+import config
+
 
 class Httprequest(object):
 
@@ -37,7 +40,6 @@ class Httprequest(object):
     def write(self, text):
         sys.stdout.write(text)
 
-    @property
     def get_cookies(self):
         if not hasattr(self, "_cookies"):
             self._cookies = Cookie.SimpleCookie()
@@ -88,23 +90,46 @@ class BaseHandler(object):
     def get_cookies(self):
         return self.request.get_cookies()
 
+    def get_cookie(self, name):
+        cookies = self.get_cookies()
+        if cookies is not None and name in cookies:
+            return cookies[name].value
+        else:
+            return None
+
     def set_cookie(self, name, value, expires=None,
                    expires_days=None, max_age=None, path="/"):
         if not hasattr(self, "_new_cookie"):
             self._new_cookie = Cookie.SimpleCookie()
         self._new_cookie[name] = value
         if path:
-            self._new_cookie[name][path] = path
+            self._new_cookie[name]["path"] = path
         if max_age:
-            self._new_cookie[name][max_age] = max_age
+            self._new_cookie[name]["max_age"] = max_age
         if expires_days is not None and not expires:
             expires = datetime.datetime.utcnow() + datetime.timedelta(
                 days=expires_days)
         if expires:
-            timestamp = calendar.timegm(expires.utctimetuple)
+            timestamp = calendar.timegm(expires.utctimetuple())
             format_timestamp = email.utils.formatdate(
                 timestamp, localtime=False, usegmt=True)
-            self._new_cookie[name][expires] = format_timestamp
+            self._new_cookie[name]["expires"] = format_timestamp
+
+    def set_secure_cookie(self, name, value, expires_days=7, **kwargs):
+        self.set_cookie(
+            name, tool.create_signed_value(config.secret, name, value),
+            expires_days=expires_days, **kwargs)
+
+    def get_secure_cookie(self, name, value=None, max_age=7):
+        if value is None:
+            value = self.get_cookie(name)
+        return (
+            tool.decode_signed_value(
+                config.secret,
+                name,
+                value,
+                max_age=max_age)
+        )
 
     def clear_cookie(self, name):
         # 100 days for expires
@@ -143,7 +168,7 @@ class BaseHandler(object):
             return args[0]
         else:
             return ""
-    
+
     def redirect(self, url, permanent=False):
         self.set_status(302)
         self.set_header("Location", urlparse.urljoin(self.request.uri, url))
