@@ -135,6 +135,15 @@ class BaseHandler(object):
             args.append(arg)
         return args
 
+    def get_arg(self, name, default=[]):
+        args = []
+        for arg in self.request.args.get(name, []):
+            args.append(arg)
+        if len(args) >= 1:
+            return args[0]
+        else:
+            return ""
+    
     def redirect(self, url, permanent=False):
         self.set_status(302)
         self.set_header("Location", urlparse.urljoin(self.request.uri, url))

@@ -28,12 +28,12 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form" action="/register" method="POST">
+      <form class="form-signin" role="form" action="/register?" method="POST">
         <h2 class="form-signin-heading">New Account</h2>
         Enter your email:
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
         Enter your password:
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
         <h4 class="form-signin-heading">
             %(error_info)s
         </h4>
