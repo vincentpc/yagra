@@ -12,8 +12,8 @@ import calendar
 import email.utils
 import urlparse
 
-import webapp.utils as tool 
-import config
+import webapp.utils as tool
+from . import config
 
 
 class Httprequest(object):
@@ -133,12 +133,12 @@ class BaseHandler(object):
 
     def clear_cookie(self, name):
         # 100 days for expires
-        expires = datetime.datetime.utcnow() - datetime.timedelta(days=100)
+        expires = datetime.datetime.utcnow() - datetime.timedelta(days=365)
         self.set_cookie(name, value="", expires=expires)
 
     def clear_cookies(self):
         all_cookies = self.get_cookies()
-        for name in all_cookies.iterkeys():
+        for name in all_cookies:
             self.clear_cookie(name)
 
     def gen_headers(self):
@@ -170,10 +170,11 @@ class BaseHandler(object):
             return ""
 
     def redirect(self, url, permanent=False):
-        self.set_status(302)
+        self.set_status(301)
         self.set_header("Location", urlparse.urljoin(self.request.uri, url))
+        self.write()
 
-    def write(self, text):
+    def write(self, text=""):
         if isinstance(text, dict):
             #text = json_encode(text)
 

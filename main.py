@@ -12,19 +12,49 @@ URLS = (
     ("/", "IndexHandler"),
     ("/hello/(.*)", "Hello"),
     ("/register?", "RegisterHandler"),
-    ("/user", "UserHandler")
+    ("/user", "UserHandler"),
+    ("/signin", "SigninHandler"),
+    ("/signout", "SignoutHandler")
 )
 
+
+class SignoutHandler(BaseHandler):
+
+    def get(self):
+        self.clear_cookies()
+        self.redirect("/")
+
+
 class UserHandler(BaseHandler):
+
     def check(self):
-         
-        self.email = self.get_secure_cookie("email")
+        email = self.get_secure_cookie("email")
+        user = dbapi.User()
+        if email and user.get_user(email) == 0:
+            self.email = email
+        else:
+            self.clear_cookies()
+            self.redirect("/")
 
     def get(self):
         self.check()
         params = {'name': self.email}
         body = self.wrap_html('templates/user.html', params)
         self.write(body)
+
+
+class SigninHandler(BaseHandler):
+
+    def post(self):
+        email = self.get_arg("email")
+        password = self.get_arg("password")
+        if email:
+            user = dbapi.User()
+            if user.check_user(email, password) == 0:
+                self.set_secure_cookie('email', str(email))
+                self.redirect("/user")
+
+        self.redirect("/")
 
 
 class RegisterHandler(BaseHandler):
@@ -60,8 +90,14 @@ class IndexHandler(BaseHandler):
 
     def get(self):
 
-        body = self.wrap_html('templates/index.html')
-        self.write(body)
+        email = self.get_secure_cookie("email")
+        user = dbapi.User()
+        if email and user.get_user(email) == 0:
+            self.redirect("/user")
+        else:
+            self.clear_cookies()
+            body = self.wrap_html('templates/index.html')
+            self.write(body)
 
 
 class Hello(BaseHandler):
