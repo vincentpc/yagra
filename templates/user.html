@@ -51,16 +51,17 @@
 
         <p>Email: %(name)s</p>
         <p>Register Time: %(time)s</p>
+        <img src="%(imagepath)s" class="img-circle" alt="Upload Image Below"> 
         <p>
-        </p>
-        <form role="form">
+        <form role="form" enctype="multipart/form-data" action="/upload" method="POST">
           <div class="form-group">
             <label for="exampleInputFile">File input</label>
-            <input type="file" id="exampleInputFile">
+            <input type="file" name="filename">
             <p class="help-block">Upload a Picture</p>
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+      </form>
+      </p>
       </div>
 
     </div> <!-- /container -->

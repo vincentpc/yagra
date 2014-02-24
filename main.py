@@ -3,6 +3,7 @@
 
 from datetime import date
 import time
+import hashlib
 
 from webapp.web import Application, BaseHandler
 from model import dbapi
@@ -14,8 +15,36 @@ URLS = (
     ("/register?", "RegisterHandler"),
     ("/user", "UserHandler"),
     ("/signin", "SigninHandler"),
-    ("/signout", "SignoutHandler")
+    ("/signout", "SignoutHandler"),
+    ("/upload", "UploadHandler")
 )
+
+class UploadHandler(BaseHandler):
+    def check(self):
+        email = self.get_secure_cookie("email")
+        user = dbapi.User()
+        if email and user.get_user(email) == 0:
+            profile = user.get_user_all(email)
+            if profile:
+                self.id = profile[0]
+                self.time = profile[4]
+                self.email = email
+        else:
+            self.clear_cookies()
+            self.redirect("/")
+
+    def post(self):
+        self.check()
+        fileitem = self.request.files["filename"]
+        if fileitem.filename:
+            #fn = os.path.basename(fileitem.filename)
+            m = hashlib.md5()
+            m.update(self.email)
+            email_md5 = m.hexdigest()
+            open("images/" + email_md5, "wb").write(fileitem.file.read())
+            self.redirect("user")
+        else:
+            self.redirect("user")
 
 
 class SignoutHandler(BaseHandler):
@@ -43,7 +72,11 @@ class UserHandler(BaseHandler):
 
     def get(self):
         self.check()
-        params = {'name': self.email, 'time': self.time}
+        m = hashlib.md5()
+        m.update(self.email)
+        email_md5 = m.hexdigest()
+        fn = "images/" + email_md5
+        params = {'name': self.email, 'time': self.time, 'imagepath': fn}
         body = self.wrap_html('templates/user.html', params)
         self.write(body)
 
