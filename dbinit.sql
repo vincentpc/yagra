@@ -4,7 +4,6 @@ CREATE DATABASE IF NOT EXISTS `yagra`;
 DROP TABLE IF EXISTS `yagra`.`yagra_user_head`;
 DROP TABLE IF EXISTS `yagra`.`yagra_image`;
 DROP TABLE IF EXISTS `yagra`.`yagra_user`;
-DROP TABLE IF EXISTS `yagra`.`yagra_session`;
 
 
 -- 用户表

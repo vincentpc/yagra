@@ -55,6 +55,17 @@ class User(object):
         else:
             return -1
 
+    def get_user_all(self, name):
+        sqlstr = "SELECT * FROM yagra_user WHERE user_email = %s"
+        c = self.db.cursor()
+        c.execute(sqlstr, (name))
+        result = c.fetchall()
+
+        if len(result) is not 0:
+            return result[0]
+        else:
+            return None
+
     def check_user(self, name, password):
         password = self.encode_pwd(password)
         sqlstr = "SELECT * FROM yagra_user WHERE user_email = %s AND user_passwd = %s"

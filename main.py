@@ -24,6 +24,8 @@ class SignoutHandler(BaseHandler):
         self.clear_cookies()
         self.redirect("/")
 
+    def post(self):
+        self.get()
 
 class UserHandler(BaseHandler):
 
@@ -31,14 +33,17 @@ class UserHandler(BaseHandler):
         email = self.get_secure_cookie("email")
         user = dbapi.User()
         if email and user.get_user(email) == 0:
-            self.email = email
+            profile = user.get_user_all(email)
+            if profile:
+                self.time = profile[4]
+                self.email = email
         else:
             self.clear_cookies()
             self.redirect("/")
 
     def get(self):
         self.check()
-        params = {'name': self.email}
+        params = {'name': self.email, 'time': self.time}
         body = self.wrap_html('templates/user.html', params)
         self.write(body)
 

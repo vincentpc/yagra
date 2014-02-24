@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <!--<link rel="shortcut icon" href="../../assets/ico/favicon.ico">-->
 
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+    <title>User Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -38,9 +38,15 @@
       </div>
 
       <div class="jumbotron">
-        <h1>%(name)s</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+        <h1>Welcome to Yagra</h1>
+        <p class="lead">Email: %(name)s </p>
+        <p class="lead">Register Time: %(time)s</p>
+        <form enctype="multipart/form-data" action="/uploadimage" method="POST">
+            <p class="lead">Image: <input type="file" name="filename" />
+            
+            <input type="submit" value="upload" />
+            </p>
+        </form>
       </div>
 
       <div class="row marketing">
