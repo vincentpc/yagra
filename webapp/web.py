@@ -13,7 +13,7 @@ import email.utils
 import urlparse
 
 import webapp.utils as tool
-from . import config
+import config
 
 
 class Httprequest(object):
@@ -117,7 +117,7 @@ class BaseHandler(object):
 
     def set_secure_cookie(self, name, value, expires_days=7, **kwargs):
         self.set_cookie(
-            name, tool.create_signed_value(config.secret, name, value),
+            name, tool.create_signed_value(config.COOKIE_SECRET, name, value),
             expires_days=expires_days, **kwargs)
 
     def get_secure_cookie(self, name, value=None, max_age=7):
@@ -125,7 +125,7 @@ class BaseHandler(object):
             value = self.get_cookie(name)
         return (
             tool.decode_signed_value(
-                config.secret,
+                config.COOKIE_SECRET,
                 name,
                 value,
                 max_age=max_age)

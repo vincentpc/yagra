@@ -3,9 +3,12 @@
 
 import MySQLdb
 
-db = MySQLdb.connect(host="localhost",
-                     user="yagra",
-                     passwd="abcd!1234",
-                     db="yagra",
+import config
+
+
+db = MySQLdb.connect(host=config.DB_HOST,
+                     user=config.DB_USER,
+                     passwd=config.DB_PASSWD,
+                     db=config.DB_NAME,
                      charset="utf8"
-                    )
+                     )
