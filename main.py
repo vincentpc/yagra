@@ -121,7 +121,7 @@ class UserHandler(BaseHandler):
         if os.path.isfile(fn):
             imagetag =  """<img src="%s" height="400"  class="rounded" alt="Upload Image Below">""" % fn
         else:
-            imagetag = """<p>Avatar Not Available. Upload One!</p>""" + \
+            imagetag = """<p class="text-warning">Avatar Not Available. Upload One!</p>""" + \
                 """<img src="static/default.jpg" height="400"  class="rounded" alt="Upload Image Below">"""
         params = {'name': self.email, 'time': self.time, 'image': imagetag}
         body = self.wrap_html('templates/user.html', params)
