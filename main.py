@@ -113,7 +113,7 @@ class UserHandler(BaseHandler):
         email_md5 = m.hexdigest()
         fn = "images/" + email_md5
         if os.path.isfile(fn):
-            imagetag =  """<img src="%s" class="rounded" alt="Upload Image Below">""" % fn
+            imagetag =  """<img src="%s" height="400"  class="rounded" alt="Upload Image Below">""" % fn
         else:
             imagetag = """<p>Avatar Not Available. Upload One!</p>"""
         params = {'name': self.email, 'time': self.time, 'image': imagetag}
