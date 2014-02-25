@@ -6,6 +6,7 @@ import time
 import hashlib
 import os
 import imghdr
+import mimetypes
 
 from webapp.web import Application, BaseHandler
 from model import dbapi
@@ -18,8 +19,34 @@ URLS = (
     ("/user", "UserHandler"),
     ("/signin", "SigninHandler"),
     ("/signout", "SignoutHandler"),
-    ("/upload", "UploadHandler")
+    ("/upload", "UploadHandler"),
+    ("/avatar/(.*)", "AvatarHandler"),
+    ("/error", "ErrorHandler")
 )
+
+class ErrorHandler(BaseHandler):
+    def get(self):
+        self.write("Page Not Exist")
+    
+
+class AvatarHandler(BaseHandler):
+    def get(self, name):
+        fullpath = "images/" + name
+        filetype = "jpeg"
+        if os.path.isfile("images/"+name):
+            with open(fullpath, "rb") as f:
+                image = f.read()
+                length = len(image)
+                self.set_header("Content-Length", length)
+                filetype = imghdr.what(fullpath)
+            mtype = mimetypes.types_map.get("."+filetype, "image/jpeg")
+            self.set_header("Content-Type", mtype)
+            self.write(image)
+        else:
+            self.redirect("/error")
+
+    def post(self, name):
+        self.get(name)
 
 class UploadHandler(BaseHandler):
     def check(self):

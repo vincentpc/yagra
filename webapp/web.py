@@ -144,7 +144,6 @@ class BaseHandler(object):
     def gen_headers(self):
         status_expr = httplib.responses[self._status_code]
         header_line = ["Status: %d %s" % (self._status_code, status_expr)]
-
         for name, value in self._headers.iteritems():
             header_line.append("%s: %s" % (name, value))
 
