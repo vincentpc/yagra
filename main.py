@@ -24,22 +24,25 @@ URLS = (
     ("/error", "ErrorHandler")
 )
 
+
 class ErrorHandler(BaseHandler):
+
     def get(self):
         self.write("Page Not Exist")
-    
+
 
 class AvatarHandler(BaseHandler):
+
     def get(self, name):
         fullpath = "images/" + name
         filetype = "jpeg"
-        if os.path.isfile("images/"+name):
+        if os.path.isfile("images/" + name):
             with open(fullpath, "rb") as f:
                 image = f.read()
                 length = len(image)
                 self.set_header("Content-Length", length)
                 filetype = imghdr.what(fullpath)
-            mtype = mimetypes.types_map.get("."+filetype, "image/jpeg")
+            mtype = mimetypes.types_map.get("." + filetype, "image/jpeg")
             self.set_header("Content-Type", mtype)
             self.write(image)
         else:
@@ -48,7 +51,9 @@ class AvatarHandler(BaseHandler):
     def post(self, name):
         self.get(name)
 
+
 class UploadHandler(BaseHandler):
+
     def check(self):
         email = self.get_secure_cookie("email")
         user = dbapi.User()
@@ -68,12 +73,12 @@ class UploadHandler(BaseHandler):
         if fileitem.filename:
             #fn = os.path.basename(fileitem.filename)
             #filetype = imghdr.what(fileitem.file)
-            #if filetype is None:
+            # if filetype is None:
             #    self.redirect("user")
             m = hashlib.md5()
             m.update(self.email)
             email_md5 = m.hexdigest()
-            open("images/" + email_md5 , "wb").write(fileitem.file.read())
+            open("images/" + email_md5, "wb").write(fileitem.file.read())
             #(x, y, z) = imgfile.getsizes(fileitem.file)
             #thumbnail = imageop.scale(fileitem.file, z, x, y, 64, 64)
             #open("images/" + email_md5+"_small"+filetype, "wb").write(thumbnail.read())
@@ -91,6 +96,7 @@ class SignoutHandler(BaseHandler):
     def post(self):
         self.get()
 
+
 class UserHandler(BaseHandler):
 
     def check(self):
@@ -107,7 +113,7 @@ class UserHandler(BaseHandler):
 
     def get(self):
         self.check()
-    
+
         m = hashlib.md5()
         m.update(self.email)
         email_md5 = m.hexdigest()
@@ -115,7 +121,8 @@ class UserHandler(BaseHandler):
         if os.path.isfile(fn):
             imagetag =  """<img src="%s" height="400"  class="rounded" alt="Upload Image Below">""" % fn
         else:
-            imagetag = """<p>Avatar Not Available. Upload One!</p>"""
+            imagetag = """<p>Avatar Not Available. Upload One!</p>""" + \
+                """<img src="static/default.jpg" height="400"  class="rounded" alt="Upload Image Below">"""
         params = {'name': self.email, 'time': self.time, 'image': imagetag}
         body = self.wrap_html('templates/user.html', params)
         self.write(body)
