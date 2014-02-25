@@ -172,6 +172,7 @@ class BaseHandler(object):
     def redirect(self, url, permanent=False):
         self.set_status(301)
         self.set_header("Location", urlparse.urljoin(self.request.uri, url))
+        self.set_header("Cache-Control", "no-cache")
         self.write()
 
     def write(self, text=""):

@@ -5,6 +5,7 @@ from datetime import date
 import time
 import hashlib
 import os
+import imghdr
 
 from webapp.web import Application, BaseHandler
 from model import dbapi
@@ -39,10 +40,16 @@ class UploadHandler(BaseHandler):
         fileitem = self.request.files["filename"]
         if fileitem.filename:
             #fn = os.path.basename(fileitem.filename)
+            #filetype = imghdr.what(fileitem.file)
+            #if filetype is None:
+            #    self.redirect("user")
             m = hashlib.md5()
             m.update(self.email)
             email_md5 = m.hexdigest()
-            open("images/" + email_md5, "wb").write(fileitem.file.read())
+            open("images/" + email_md5 , "wb").write(fileitem.file.read())
+            #(x, y, z) = imgfile.getsizes(fileitem.file)
+            #thumbnail = imageop.scale(fileitem.file, z, x, y, 64, 64)
+            #open("images/" + email_md5+"_small"+filetype, "wb").write(thumbnail.read())
             self.redirect("user")
         else:
             self.redirect("user")
@@ -73,6 +80,7 @@ class UserHandler(BaseHandler):
 
     def get(self):
         self.check()
+    
         m = hashlib.md5()
         m.update(self.email)
         email_md5 = m.hexdigest()
