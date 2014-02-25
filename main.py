@@ -145,10 +145,11 @@ class RegisterHandler(BaseHandler):
     def post(self):
         email = self.get_arg('email')
         password = self.get_arg('password')
+        password2 = self.get_arg('password2')
 
         user = dbapi.User()
         error = ""
-        if email:
+        if email and password == password2:
             if user.get_user(email) == 0:
                 error = "user already exist"
             else:
@@ -159,7 +160,10 @@ class RegisterHandler(BaseHandler):
                 else:
                     error = "insert falure, try again later"
         else:
-            error = "missing argument"
+            if password != password2:
+                error = "password inconsistent"
+            else:
+                error = "missing argument"
 
         self.get(error)
 
