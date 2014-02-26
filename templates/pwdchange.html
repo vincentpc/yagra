@@ -28,20 +28,27 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form" action="/register?" method="POST">
-        <h2 class="form-signin-heading">New Account</h2>
-        Enter your email:
-        <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-        Enter your password:
+      <form class="form-signin" role="form" action="/pwdchange" method="POST">
+          <h2 class="form-signin-heading">Password Change</h2>
+          <p class="lead">
+        Account: %(name)s
+          </p>
+        Enter your OLD password:
+        <input type="password" name="oldpassword" class="form-control" placeholder="Password" required autofocus>
+        Enter your NEW password:
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-        Enter your password again:
+        Enter your NEW password again:
         <input type="password" name="password2" class="form-control" placeholder="Password" required>
-        Password Strength:
+        New Password Strngth:
         <label id ="result"> </label>
         <h4 class="form-signin-heading" style="color:red">
             %(error_info)s
         </h4>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>
+    </form>
+
+      <form class="form-signin" role="form" action="/user" method="GET">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Back</button>
     </form>
 
     </div> <!-- /container -->

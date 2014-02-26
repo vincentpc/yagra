@@ -77,3 +77,18 @@ class User(object):
             return 0
         else:
             return -1
+
+    def update_password(self, name, password):
+        password = self.encode_pwd(password)
+        sqlstr = "UPDATE yagra_user SET user_passwd = %s WHERE user_email = %s"
+        c = self.db.cursor()
+        try:
+            result = c.execute(sqlstr, (password, name))
+            self.db.commit()
+            if result > 0:
+                return 0
+            else:
+                return -1
+        except:
+            self.db.rollback()
+            return -1

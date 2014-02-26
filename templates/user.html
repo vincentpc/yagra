@@ -49,8 +49,11 @@
       <div class="page-header">
           <h1>Welcome %(name)s</h1>
 
-        <p>Email: %(name)s</p>
+        <p>Account: %(name)s</p>
         <p>Register Time: %(time)s</p>
+      <form class="form-signin" role="form" action="/pwdchange" method="GET">
+        <button class="btn btn-primary" type="submit">Change Password</button>
+    </form>
      </div>
      <div class ="page-header">
          <h3> Your Avatar: </h3>
@@ -63,7 +66,7 @@
             <div class="form-group">
             <input type="file" name="filename">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-lg btn-primary">Submit</button>
       </form>
       </p>
       </div>

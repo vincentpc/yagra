@@ -10,6 +10,7 @@ from handlers.signout import SignoutHandler
 from handlers.upload import UploadHandler
 from handlers.avatar import AvatarHandler
 from handlers.error import ErrorHandler
+from handlers.password import PasswordHandler
 
 
 URLS = (
@@ -20,7 +21,8 @@ URLS = (
     ("/signout", "SignoutHandler"),
     ("/upload", "UploadHandler"),
     ("/avatar/(.*)", "AvatarHandler"),
-    ("/error", "ErrorHandler")
+    ("/error", "ErrorHandler"),
+    ("/pwdchange", "PasswordHandler")
 )
 
 
