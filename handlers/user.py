@@ -3,6 +3,7 @@
 
 import hashlib
 import os
+import datetime
 
 from webapp.web import BaseHandler
 from model import dbapi
@@ -16,7 +17,7 @@ class UserHandler(BaseHandler):
         if email and user.get_user(email) == 0:
             profile = user.get_user_all(email)
             if profile:
-                self.time = profile[4]
+                self.time = profile[4].date()
                 self.email = email
         else:
             self.clear_cookies()
