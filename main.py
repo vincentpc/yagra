@@ -11,6 +11,7 @@ from handlers.upload import UploadHandler
 from handlers.avatar import AvatarHandler
 from handlers.error import ErrorHandler
 from handlers.password import PasswordHandler
+from handlers.ftypeerror import FiletypeErrorHandler
 
 
 URLS = (
@@ -22,7 +23,8 @@ URLS = (
     ("/upload", "UploadHandler"),
     ("/avatar/(.*)", "AvatarHandler"),
     ("/error", "ErrorHandler"),
-    ("/pwdchange", "PasswordHandler")
+    ("/pwdchange", "PasswordHandler"),
+    ("/ftypeerror", "FiletypeErrorHandler")
 )
 
 
