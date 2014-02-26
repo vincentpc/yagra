@@ -2,6 +2,8 @@
 # coding=utf-8
 
 import MySQLdb
+import sys
+sys.path.append("..")
 
 import config
 
