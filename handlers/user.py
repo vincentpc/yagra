@@ -3,7 +3,6 @@
 
 import hashlib
 import os
-import datetime
 
 from webapp.web import BaseHandler
 from model import dbapi
