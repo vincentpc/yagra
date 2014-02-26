@@ -2,6 +2,7 @@
 # coding=utf-8
 
 from webapp.web import BaseHandler
+from model import dbapi
 
 
 class SigninHandler(BaseHandler):
