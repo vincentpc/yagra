@@ -16,4 +16,8 @@ class SigninHandler(BaseHandler):
                 self.set_secure_cookie('email', str(email))
                 self.redirect("/user")
 
-        self.redirect("/")
+        error = "Password Invalid"
+        param = {"error_info": error}
+        body = self.wrap_html('templates/index.html', param)
+        self.write(body)
+        # self.redirect("/")

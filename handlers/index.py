@@ -7,7 +7,7 @@ from model import dbapi
 
 class IndexHandler(BaseHandler):
 
-    def get(self):
+    def get(self, error=""):
 
         email = self.get_secure_cookie("email")
         user = dbapi.User()
@@ -15,5 +15,6 @@ class IndexHandler(BaseHandler):
             self.redirect("/user")
         else:
             self.clear_cookies()
-            body = self.wrap_html('templates/index.html')
+            param = {"error_info": error}
+            body = self.wrap_html('templates/index.html', param)
             self.write(body)
