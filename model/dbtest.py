@@ -1,8 +1,20 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-import globaldb
+import MySQLdb
 import time
+import sys
+
+sys.path.append("..")
+import config
+
+
+db =  MySQLdb.connect(host=config.DB_HOST,
+                     user=config.DB_USER,
+                     passwd=config.DB_PASSWD,
+                     db=config.DB_NAME,
+                     charset="utf8"
+                    )       
 
 def test_insert(name="vincent"):
     sqlstr = """
@@ -16,16 +28,16 @@ def test_insert(name="vincent"):
         VALUES
         (%s, %s, %s, %s)
     """
-    c = globaldb.db.cursor()
+    c = db.cursor()
     c.execute(sqlstr, (name, "1234", name + "@gmail.com",
                        time.strftime('%Y-%m-%d %H:%M:%S')))
-    globaldb.db.commit()
+    db.commit()
 
 
 def test_select():
     import pprint
     sqlstr = "SELECT * FROM yagra_user"
-    c = globaldb.db.cursor()
+    c = db.cursor()
     c.execute(sqlstr)
     pprint.pprint(c.fetchall())
     c.close()
@@ -35,7 +47,7 @@ def dbtest():
     #import sys
     #test_insert(sys.argv[1])
     test_select()
-    globaldb.db.close()
+    db.close()
 
 
 if __name__ == "__main__":
