@@ -37,6 +37,3 @@ class UserHandler(BaseHandler):
         params = {'name': self.email, 'time': self.time, 'image': imagetag}
         body = self.wrap_html('templates/user.html', params)
         self.write(body)
-
-
-

@@ -2,9 +2,6 @@
 # coding=utf-8
 
 import hashlib
-import os
-import imghdr
-import mimetypes
 
 from webapp.web import BaseHandler
 from model import dbapi
@@ -43,4 +40,3 @@ class UploadHandler(BaseHandler):
             self.redirect("user")
         else:
             self.redirect("user")
-

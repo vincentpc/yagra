@@ -234,7 +234,6 @@ class Application(object):
                 args = m.groups()
                 func = method.lower()
                 cls = self._vars.get(name)
-
                 if hasattr(cls, func):
                     handler = cls(self, self._request)
                     meth = getattr(cls, func)

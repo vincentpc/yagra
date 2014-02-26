@@ -6,7 +6,6 @@ import imghdr
 import mimetypes
 
 from webapp.web import BaseHandler
-from model import dbapi
 
 
 class AvatarHandler(BaseHandler):

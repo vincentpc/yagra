@@ -2,6 +2,14 @@
 # coding=utf-8
 
 from webapp.web import Application
+from handlers.index import IndexHandler
+from handlers.register import RegisterHandler
+from handlers.user import UserHandler
+from handlers.signin import SigninHandler
+from handlers.signout import SignoutHandler
+from handlers.upload import UploadHandler
+from handlers.avatar import AvatarHandler
+from handlers.error import ErrorHandler
 
 
 URLS = (
