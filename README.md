@@ -72,6 +72,9 @@ Install
 * 进入目录:
 
    		cd yagra  
+   		
+* 初次运行设置apache(请根据系统apache安装目录调正路径)::
+* 		vi /etc/apache2/sites-enable/default
 
 * 初次运行创建数据库::
 
@@ -84,10 +87,62 @@ Install
 * 运行(使用apache服务器分发请求)::
 
    		service apache2 start
+   		python main.py
 
 
 Configuration 
 ================
+
+Apache Configuration
+-------------
+Apache2服务器设置
+
+主要为两部分,对于特定静态文件(css,js等),直接映射;其他动态文件,交由程序动态处理
+
+端口假定为8080
+
+网站程序目录为/home/ubuntu/yagra::
+
+
+<VirtualHost *:8080>
+    ServerName vincentpc.servehttp.com
+        ServerAdmin webmaster@servehttp.com
+
+        DocumentRoot /home/ubuntu/yagra
+    ErrorLog /home/ubuntu/yagra/log/yagra_errors.txt
+
+    AddHandler cgi-script .py
+    DirectoryIndex main.py
+
+    Alias /css /home/ubuntu/yagra/static/css/
+    Alias /js /home/ubuntu/yagra/static/js
+    Alias /images /home/ubuntu/yagra/images/
+    <Directory /home/ubuntu/yagra/static/css>
+        Order allow,deny
+        Allow from all
+    </Directory>
+        <Directory "/home/ubuntu/yagra">
+                AllowOverride None
+                Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        <IfModule mod_rewrite.c>
+            RewriteEngine on
+            RewriteBase /
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule ^(.*)$ main.py/$1 [L]
+        </IfModule>
+        </Directory>
+
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
 
 
 Database Configuration
