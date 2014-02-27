@@ -42,10 +42,10 @@ Dependency
  	参考网址 [Python 2.7](http://www.python.org/download/releases/2.7/)
  	
 * Apache 2:
-
- 	参考网址 [Apache](http://httpd.apache.org/)
  	
  	sudo apt-get install apache2
+
+	参考网址 [Apache](http://httpd.apache.org/)
 
 * Mysql:
 
@@ -109,7 +109,9 @@ Apache2服务器设置
 
 网站程序目录为/home/ubuntu/yagra::
 
-
+    #######################
+    # Apache Configure ##
+    #######################
 
 <VirtualHost *:8080>
     ServerName vincentpc.servehttp.com
