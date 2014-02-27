@@ -8,7 +8,7 @@ What
 
 一个提供avatar hosting服务的站点
 
-你可以在yatar上编辑和管理你的头像
+你可以在yagar上管理你的头像
 
 功能:
 
@@ -43,7 +43,7 @@ Dependency
 
 * Mysql:
 
-		sudo apt-get install mysql
+	sudo apt-get install mysql
 
     	sudo apt-get install mysql-dev
     
@@ -58,7 +58,7 @@ Dependency
 
 note:
 
-   	make init 自动安装依赖软件(jinja2,tornado,mysql-python)
+   	make init 自动安装依赖软件(mysql-python)
    	
    	make doc  自动生成使用文档,文档目录在doc/_build下
 
@@ -71,9 +71,9 @@ Install
 
 * 进入目录:
 
-   		cd peanuts     
+   		cd yagra  
 
-* 初次运行创建数据库(/etc/CreateDatabase.sql)::
+* 初次运行创建数据库::
 
    		mysql -uname -ppassword < dbinit.sql      
    
@@ -81,9 +81,9 @@ Install
 
    		vi config.py            
 
-* 运行::
+* 运行(使用apache服务器分发请求)::
 
-   		python app.py    
+   		service apache2 start
 
 
 Configuration 
@@ -93,11 +93,11 @@ Configuration
 Database Configuration
 ----------------------
 
-使用peanuts/etc文件下的sql脚本创建数据库
+使用dbinit.sql脚本创建数据库
 
-默认创建名字为PEANUTS的数据库,如果存在则会删除后创建
+默认创建名字为yagra的数据库,如果存在则会删除后创建
 
-默认USER有一个管理员账户(`帐户密码均为root`) 登录后可修改密码::
+默认创建一个yagra账户(`密码为abcd!1234,与config对应`)并用此用户访问该数据库::
 
 
 
@@ -109,9 +109,8 @@ System Configuration
     # system Configure ##
     #######################
     #初始运行时设置cookie加密密钥,任意字符串
-    COOKIE_SECRET =  'mynameisvincentchan' 
-    #初始运行时设置关闭http服务器缓冲时间,默认1秒
-    MAX_WAIT_SECONDS_BEFORE_SHUTDOWN = 1
+    COOKIE_SECRET =  'thisis secret' 
+
     
     
     #######################
@@ -119,11 +118,11 @@ System Configuration
     #######################
     
     #数据库连接设置,依次为IP,端口,用户名,用户密码,数据库名称
-    DB_HOST = '10.0.2.15' 
+    DB_HOST = 'localhost' 
     DB_PORT = 3306
-    DB_USER = 'xxxx'
-    DB_PASSWD = 'xxxx'
-    DB_NAME = 'PEANUST'
+    DB_USER = 'yagra'
+    DB_PASSWD = 'abcd!1234'
+    DB_NAME = 'yagra'
 
 
 Documentation
@@ -132,11 +131,6 @@ Documentation
 
 存储在 /docs/_build/html(首页为index.html)
     
-Display
-===============  
-
-![animated-screenshots](http://cdn.makeagif.com/media/7-29-2013/YTVQ46.gif)
-
 
 
 CHANGELOG
