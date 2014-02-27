@@ -42,7 +42,7 @@ Dependency
  	参考网址 [Python 2.7](http://www.python.org/download/releases/2.7/)
  	
 * Apache 2:
- 	
+
  	sudo apt-get install apache2
 
 	参考网址 [Apache](http://httpd.apache.org/)
@@ -80,7 +80,7 @@ Install
    		cd yagra  
    		
 * 初次运行设置apache(请根据系统apache安装目录调正路径)::
-* 		vi /etc/apache2/sites-enable/default
+ 		vi /etc/apache2/sites-enable/default
 
 * 初次运行创建数据库::
 
@@ -112,8 +112,8 @@ Apache2服务器设置
     #######################
     # Apache Configure ##
     #######################
-
-<VirtualHost *:8080>
+    
+    <VirtualHost *:8080>
     ServerName vincentpc.servehttp.com
         ServerAdmin webmaster@servehttp.com
 
