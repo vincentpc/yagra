@@ -80,6 +80,7 @@ Install
    		cd yagra  
    		
 * 初次运行设置apache(请根据系统apache安装目录调正路径)::
+
  		vi /etc/apache2/sites-enable/default
 
 * 初次运行创建数据库::
@@ -90,6 +91,9 @@ Install
 
    		vi config.py            
 
+* 在根目录下创建log及images目录(存放log和上传图片)::
+  (`将images目录权限改为可写可读,以便上传照片`)
+	
 * 运行(使用apache服务器分发请求)::
 
    		service apache2 start
