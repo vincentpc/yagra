@@ -42,8 +42,8 @@ Dependency
  	参考网址 [Python 2.7](http://www.python.org/download/releases/2.7/)
  	
 * Apache 2:
-
- 	sudo apt-get install apache2
+	
+	sudo apt-get install apache2
 
 	参考网址 [Apache](http://httpd.apache.org/)
 
