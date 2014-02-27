@@ -7,6 +7,8 @@ import imghdr
 from webapp.web import BaseHandler
 from model import dbapi
 
+MAX_FILE_SIZE = 5000000 #upload file size setting < 5MB
+
 
 class UploadHandler(BaseHandler):
 
@@ -23,12 +25,21 @@ class UploadHandler(BaseHandler):
             self.clear_cookies()
             self.redirect("/")
 
+    def get_filesize(self, file):
+        file.seek(0, 2)
+        size = file.tell()
+        file.seek(0)
+        return size
+
     def post(self):
         self.check()
         fileitem = self.request.files["filename"]
         if fileitem.filename:
             #fn = os.path.basename(fileitem.filename)
             filetype = imghdr.what(fileitem.file)
+            filesize = self.get_filesize(fileitem.file)
+            if filesize > MAX_FILE_SIZE:
+                self.redirect("/ftypeerror")
             if filetype is "jpeg" or filetype is "png" or filetype is "gif":
                 m = hashlib.md5()
                 m.update(self.email)
