@@ -73,15 +73,15 @@ note:
 Install
 -------
 
-
-
-* 进入目录:
-
-   		cd yagra  
    		
 * 初次运行设置apache(请根据系统apache安装目录调正路径)::
 
  		vi /etc/apache2/sites-enable/default
+ 		
+* 对于Apache，我们首先需要打开它的rewrite模块。因为需要Apache将所有的请求全部rewrite到指定处理器后面::
+
+		a2enmode rewrite
+		service apache2 restart
 
 * 初次运行创建数据库::
 
@@ -96,7 +96,6 @@ Install
 	
 * 运行(使用apache服务器分发请求)::
 
-   		service apache2 start
    		python main.py
 
 
