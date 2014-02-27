@@ -40,6 +40,12 @@ Dependency
 * Python 2.7:
 
  	参考网址 [Python 2.7](http://www.python.org/download/releases/2.7/)
+ 	
+* Apache 2:
+
+ 	参考网址 [Apache](http://httpd.apache.org/)
+ 	
+ 	sudo apt-get install apache2
 
 * Mysql:
 
@@ -104,11 +110,12 @@ Apache2服务器设置
 网站程序目录为/home/ubuntu/yagra::
 
 
+
 <VirtualHost *:8080>
     ServerName vincentpc.servehttp.com
         ServerAdmin webmaster@servehttp.com
 
-        DocumentRoot /home/ubuntu/yagra
+    DocumentRoot /home/ubuntu/yagra
     ErrorLog /home/ubuntu/yagra/log/yagra_errors.txt
 
     AddHandler cgi-script .py
