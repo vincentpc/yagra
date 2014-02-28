@@ -18,13 +18,16 @@ Layout 工程文件分布及说明
 
    运行时候产生的log信息记录
    
- 
+* images:
+   
+       存放上传的头像
+       
 * handlers:
    
        逻辑层:响应不同URL的handler 
        
 
-* models:
+* model:
    
       数据库相关的函数方法,与数据库相关的增删查改方法放在dbapi.py中
        
@@ -33,11 +36,14 @@ Layout 工程文件分布及说明
       显示层,静态显示的CSS,JS文件
       
 
-* template:
+* templates:
    
       显示层,动态显示的html文件
        
-
+* webapp:
+   
+      简单的web框架,处理URL路由,cookie等,基于CGI协议
+      
 * config.py:  
    
       全局配置文件(数据库配置,服务器配置)
