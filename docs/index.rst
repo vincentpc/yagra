@@ -1,4 +1,4 @@
-Yagra
+Yagra -- Yet Another Gravatar
 =====
 
 What
