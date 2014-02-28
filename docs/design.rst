@@ -31,6 +31,7 @@ Request (webapp.web.Request)
 
 
 Response (webapp.web.BaseHandler)
+--------------------------------
 
 * 所有的handlers继承这个基类,里面有设置cookie, http head, template等基本方法
 
