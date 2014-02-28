@@ -1,4 +1,4 @@
-Yagra
+Yagra -- Yet Another Gravatar
 =====
 
 What
@@ -32,6 +32,7 @@ Directory
    packagedescription.rst
    documentation.rst
    api.rst
+   design.rst
 
 Status
 ------

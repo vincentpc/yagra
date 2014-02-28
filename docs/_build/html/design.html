@@ -23,7 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="yagra 1.1 documentation" href="index.html" /> 
+    <link rel="top" title="yagra 1.1 documentation" href="index.html" />
+    <link rel="prev" title="API 客户端接口" href="api.html" /> 
   </head>
   <body>
     <div class="related">
@@ -32,6 +33,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API 客户端接口"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -45,74 +49,59 @@
 <span id="id1"></span><h1>Design 系统设计<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="web">
 <h2>Web框架<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><strong>消息管理功能</strong><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="login">
-<h3>Login 登录<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p class="first">功能说明:</p>
-<blockquote>
-<div><p>支持不同等级用户的登录</p>
-<p>数据库默认有root:root的初始账户,登录后请修改密码,据此增添其他账户</p>
-</div></blockquote>
-</li>
-<li><p class="first">使用方法:</p>
-<blockquote>
-<div><p>输入账户密码登录</p>
-</div></blockquote>
-</li>
+<div class="section" id="url-webapp-web-application">
+<h3>URL (webapp.web.Application)<a class="headerlink" href="#url-webapp-web-application" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>模仿web框架,先定义好匹配的字典,满足正则匹配则调用相应的方法</li>
+<li>此处的调用是以类为handler,再调用类里面对应的get或者post方法</li>
 </ul>
+</div>
+<div class="section" id="request-webapp-web-request">
+<h3>Request (webapp.web.Request)<a class="headerlink" href="#request-webapp-web-request" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>基于CGI协议</li>
+<li>关键是从CGI从提取出需要的URL,METHOD等信息,然后构造相关的response</li>
+</ul>
+</div>
+<div class="section" id="response-webapp-web-basehandler">
+<h3>Response (webapp.web.BaseHandler)<a class="headerlink" href="#response-webapp-web-basehandler" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>所有的handlers继承这个基类,里面有设置cookie, http head, template等基本方法</li>
+</ul>
+</div>
+<div class="section" id="template-webapp-web-basehandler">
+<h3>Template (webapp.web.BaseHandler)<a class="headerlink" href="#template-webapp-web-basehandler" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>设计了一个简单的template方式,预先将html存在templates文件中,需要时候,读取相关文件,替换需要的部分,重新输出</li>
+<li>输出时,相当于将拼接好的字符串直接print</li>
+</ul>
+</div>
+<div class="section" id="cookie-webapp-utils">
+<h3>Cookie (webapp.utils)<a class="headerlink" href="#cookie-webapp-utils" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>仿照Tornado secret cookie原理</li>
+<li>利用时间戳和用户自定义secret串,加密cookie作为用户的验证标准</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>数据库设计<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="model-dbapi">
+<h3>数据库 (model.dbapi)<a class="headerlink" href="#model-dbapi" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>数据库的设计请见dbinit.sql这个文件，主要为用户表</li>
+<li>创建数据库yagra,一个新的用户yagra并为yagra授予必要的权限</li>
+<li>用户密码使用md5存储</li>
+</ul>
+</div>
 </div>
 <div class="section" id="id3">
-<h3>Login 登出<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p class="first">功能说明:</p>
-<blockquote>
-<div><p>登出系统,自动跳转回登录界面</p>
-<p>删除cookie等信息</p>
-</div></blockquote>
-</li>
-<li><p class="first">使用方法:</p>
-<blockquote>
-<div><p>导航栏点击LOGOUT</p>
-</div></blockquote>
-</li>
-</ul>
-</div>
-<div class="section" id="new-post">
-<h3>New post 发布新消息<a class="headerlink" href="#new-post" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p class="first">功能说明:</p>
-<blockquote>
-<div><p>管理员登录后默认进入发布新消息页面</p>
-<p>目前只能群发,还不能针对特定用户发布消息</p>
-<p>可以编辑消息标题,摘要,内容(标题,摘要有长度限制)</p>
-<p>(支持基本的html可视化编辑，如设定字体、修改文本格式（缩进、列表、超链接等）、插入图片等)</p>
-</div></blockquote>
-</li>
-<li><p class="first">使用方法:</p>
-<blockquote>
-<div><p>在导航栏点击NEW POST,输入新消息的信息后点击发布</p>
-</div></blockquote>
-</li>
-</ul>
-</div>
-<div class="section" id="postlist">
-<h3>Postlist 展示消息列表<a class="headerlink" href="#postlist" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p class="first">功能说明:</p>
-<blockquote>
-<div><p>管理员登录后可以选择进入消息列表,展现所有消息的标题,摘要,修改时间</p>
-<p>每个消息都附有展开,删除,修改,改变消息拥有者选择</p>
-<p>消息按照修改时间降序排序,分页显示</p>
-</div></blockquote>
-</li>
-<li><p class="first">使用方法:</p>
-<blockquote>
-<div><p>在导航栏点击POST MANAGE,输入新消息的信息后点击发布</p>
-</div></blockquote>
-</li>
+<h2>功能处理<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="webapp-handlers-uploadhandler">
+<h3>图片上传 (webapp.handlers.UploadHandler)<a class="headerlink" href="#webapp-handlers-uploadhandler" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>图片直接存储在本地的images文件中(需要赋予第三方images可读可写的权限)</li>
+<li>上传时候,检查图片格式(白名单过滤),同时限制大小,避免存储过大的文件</li>
 </ul>
 </div>
 </div>
@@ -128,17 +117,28 @@
   <ul>
 <li><a class="reference internal" href="#">Design 系统设计</a><ul>
 <li><a class="reference internal" href="#web">Web框架</a><ul>
-<li><a class="reference internal" href="#id2"><strong>消息管理功能</strong></a></li>
-<li><a class="reference internal" href="#login">Login 登录</a></li>
-<li><a class="reference internal" href="#id3">Login 登出</a></li>
-<li><a class="reference internal" href="#new-post">New post 发布新消息</a></li>
-<li><a class="reference internal" href="#postlist">Postlist 展示消息列表</a></li>
+<li><a class="reference internal" href="#url-webapp-web-application">URL (webapp.web.Application)</a></li>
+<li><a class="reference internal" href="#request-webapp-web-request">Request (webapp.web.Request)</a></li>
+<li><a class="reference internal" href="#response-webapp-web-basehandler">Response (webapp.web.BaseHandler)</a></li>
+<li><a class="reference internal" href="#template-webapp-web-basehandler">Template (webapp.web.BaseHandler)</a></li>
+<li><a class="reference internal" href="#cookie-webapp-utils">Cookie (webapp.utils)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">数据库设计</a><ul>
+<li><a class="reference internal" href="#model-dbapi">数据库 (model.dbapi)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">功能处理</a><ul>
+<li><a class="reference internal" href="#webapp-handlers-uploadhandler">图片上传 (webapp.handlers.UploadHandler)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="previous chapter">API 客户端接口</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/design.txt"
@@ -167,6 +167,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API 客户端接口"
+             >previous</a> |</li>
         <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
