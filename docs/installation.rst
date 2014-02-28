@@ -137,6 +137,7 @@ Apache2服务器设置
 </VirtualHost>
 
 
+.. _database-config:
 
 Database Configuration
 ----------------------
@@ -147,7 +148,7 @@ Database Configuration
 
 默认创建一个yagra账户(`密码为abcd!1234,与config对应`)并用此用户访问该数据库::
 
-
+.. _config:
 
 System Configuration
 -------------
