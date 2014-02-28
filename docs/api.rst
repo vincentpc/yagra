@@ -10,11 +10,12 @@ API 客户端接口
 url:
 ----
    http://example.com/avatar/xxx
-
+   
+   也可以直接包括在img的html tag中(如<img src="http://example.com/avatar/xxx" />)
 
 HTTP请求方式:
 ---------
-   xxx为账户email的hash值
+   GET
    
   
 
@@ -22,15 +23,9 @@ HTTP请求方式:
 -----
 
 
-* from:
+* xxx为账户email的hash值(md5)
 
-   必选:可选
-   
-   类型:int   
- 
-   说明:指定从第几条消息开始列出 (0为最新的第一条消息)
-      
-            默认为from=0 (即从最新的消息开始列出)
+   如http://example.com/avatar/63268799c152a440cfe11a4f3ea62f45
 
 
 返回数据:
