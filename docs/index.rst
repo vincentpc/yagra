@@ -32,6 +32,7 @@ Directory
    packagedescription.rst
    documentation.rst
    api.rst
+   design.rst
 
 Status
 ------
