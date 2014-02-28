@@ -18,8 +18,6 @@ System 功能说明
 
 .. _background_management
 
-Admin Management 管理人员功能
-=======================
 
 
 Register 注册
