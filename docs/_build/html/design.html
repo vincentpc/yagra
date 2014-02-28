@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Design 系统设计 &mdash; yagra 1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="yagra 1.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="design">
+<span id="id1"></span><h1>Design 系统设计<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="web">
+<h2>Web框架<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><strong>消息管理功能</strong><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="login">
+<h3>Login 登录<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>支持不同等级用户的登录</p>
+<p>数据库默认有root:root的初始账户,登录后请修改密码,据此增添其他账户</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>输入账户密码登录</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Login 登出<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>登出系统,自动跳转回登录界面</p>
+<p>删除cookie等信息</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>导航栏点击LOGOUT</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="new-post">
+<h3>New post 发布新消息<a class="headerlink" href="#new-post" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>管理员登录后默认进入发布新消息页面</p>
+<p>目前只能群发,还不能针对特定用户发布消息</p>
+<p>可以编辑消息标题,摘要,内容(标题,摘要有长度限制)</p>
+<p>(支持基本的html可视化编辑，如设定字体、修改文本格式（缩进、列表、超链接等）、插入图片等)</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>在导航栏点击NEW POST,输入新消息的信息后点击发布</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="postlist">
+<h3>Postlist 展示消息列表<a class="headerlink" href="#postlist" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>管理员登录后可以选择进入消息列表,展现所有消息的标题,摘要,修改时间</p>
+<p>每个消息都附有展开,删除,修改,改变消息拥有者选择</p>
+<p>消息按照修改时间降序排序,分页显示</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>在导航栏点击POST MANAGE,输入新消息的信息后点击发布</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Design 系统设计</a><ul>
+<li><a class="reference internal" href="#web">Web框架</a><ul>
+<li><a class="reference internal" href="#id2"><strong>消息管理功能</strong></a></li>
+<li><a class="reference internal" href="#login">Login 登录</a></li>
+<li><a class="reference internal" href="#id3">Login 登出</a></li>
+<li><a class="reference internal" href="#new-post">New post 发布新消息</a></li>
+<li><a class="reference internal" href="#postlist">Postlist 展示消息列表</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/design.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Vincent Chan.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

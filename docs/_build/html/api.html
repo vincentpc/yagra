@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API 客户端接口 &mdash; yagra 1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="yagra 1.1 documentation" href="index.html" />
+    <link rel="prev" title="System 功能说明" href="documentation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="System 功能说明"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="api">
+<span id="id1"></span><h1>API 客户端接口<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>头像访问API<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="url">
+<h3>url:<a class="headerlink" href="#url" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><a class="reference external" href="http://example.com/avatar/xxx">http://example.com/avatar/xxx</a></p>
+<p>也可以直接包括在img的html tag中(如&lt;img src=&#8221;<a class="reference external" href="http://example.com/avatar/xxx">http://example.com/avatar/xxx</a>&#8221; /&gt;)</p>
+</div></blockquote>
+</div>
+<div class="section" id="http">
+<h3>HTTP请求方式:<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>GET</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h3>请求参数:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">xxx为账户email的hash值(md5)</p>
+<blockquote>
+<div><p>如http://example.com/avatar/63268799c152a440cfe11a4f3ea62f45</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>返回数据:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>提供原始头像图片,可以另存为(保存原有格式)</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">API 客户端接口</a><ul>
+<li><a class="reference internal" href="#id2">头像访问API</a><ul>
+<li><a class="reference internal" href="#url">url:</a></li>
+<li><a class="reference internal" href="#http">HTTP请求方式:</a></li>
+<li><a class="reference internal" href="#id3">请求参数:</a></li>
+<li><a class="reference internal" href="#id4">返回数据:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="documentation.html"
+                        title="previous chapter">System 功能说明</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="System 功能说明"
+             >previous</a> |</li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Vincent Chan.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

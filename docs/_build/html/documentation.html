@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>System 功能说明 &mdash; yagra 1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="yagra 1.1 documentation" href="index.html" />
+    <link rel="next" title="API 客户端接口" href="api.html" />
+    <link rel="prev" title="Layout 工程文件分布及说明" href="packagedescription.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API 客户端接口"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="packagedescription.html" title="Layout 工程文件分布及说明"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="system">
+<span id="documentation"></span><h1>System 功能说明<a class="headerlink" href="#system" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>注册（用户名，密码）</li>
+<li>登录/登出</li>
+<li>密码修改</li>
+<li>上传/更换 头像</li>
+<li>提供头像访问API</li>
+</ul>
+<div class="section" id="register">
+<h2>Register 注册<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>增加新的用户</p>
+<p>输入email,密码(账户名不可与现有系统冲突,否则报错要求重新输入)</p>
+<p>输入密码提示密码强度</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>主页点击Register</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="login">
+<h2>Login 登录<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>账户名为email,信息不正确会提示</p>
+<p>如果之前没有登出,会检查cookie并自动跳转进用户界面</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>输入账户密码登录</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>Login 登出<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>登出系统,自动跳转回登录界面</p>
+<p>删除cookie等信息</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>导航栏点击LOGOUT</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="change-password">
+<h2>Change Password 更改账户密码<a class="headerlink" href="#change-password" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>输入旧密码,两次新密码即可更改</p>
+<p>两次输入密码必须一致</p>
+<p>输入新密码提示密码强度</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>点击Change Password,可以修改密码</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="upload">
+<h2>Upload 上传/更换 头像<a class="headerlink" href="#upload" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">功能说明:</p>
+<blockquote>
+<div><p>选择图片文件上传</p>
+<p>限制格式JPG/PNG/GIF,大小&lt;5MB,否则会提示错误</p>
+<p>上传新图片即自动替换原有的,如果没有更新头像请刷新一下网页</p>
+</div></blockquote>
+</li>
+<li><p class="first">使用方法:</p>
+<blockquote>
+<div><p>选择图片文件,点击上传</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">System 功能说明</a><ul>
+<li><a class="reference internal" href="#register">Register 注册</a></li>
+<li><a class="reference internal" href="#login">Login 登录</a></li>
+<li><a class="reference internal" href="#id1">Login 登出</a></li>
+<li><a class="reference internal" href="#change-password">Change Password 更改账户密码</a></li>
+<li><a class="reference internal" href="#upload">Upload 上传/更换 头像</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="packagedescription.html"
+                        title="previous chapter">Layout 工程文件分布及说明</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter">API 客户端接口</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/documentation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="api.html" title="API 客户端接口"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="packagedescription.html" title="Layout 工程文件分布及说明"
+             >previous</a> |</li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Vincent Chan.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

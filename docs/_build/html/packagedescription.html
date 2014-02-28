@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Layout 工程文件分布及说明 &mdash; yagra 1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="yagra 1.1 documentation" href="index.html" />
+    <link rel="next" title="System 功能说明" href="documentation.html" />
+    <link rel="prev" title="Installation and Configuration 系统安装及运行" href="installation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="System 功能说明"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation and Configuration 系统安装及运行"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="layout">
+<span id="pakage-description"></span><h1>Layout 工程文件分布及说明<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h1>
+<ul id="making-a-list">
+<li><p class="first">docs:</p>
+<blockquote>
+<div><p>开发及使用文档(本网站源代码)</p>
+</div></blockquote>
+</li>
+<li><p class="first">log:</p>
+<blockquote>
+<div><p>运行时候产生的log信息记录</p>
+</div></blockquote>
+</li>
+<li><p class="first">images:</p>
+<blockquote>
+<div><p>存放上传的头像</p>
+</div></blockquote>
+</li>
+<li><p class="first">handlers:</p>
+<blockquote>
+<div><p>逻辑层:响应不同URL的handler</p>
+</div></blockquote>
+</li>
+<li><p class="first">model:</p>
+<blockquote>
+<div><p>数据库相关的函数方法,与数据库相关的增删查改方法放在dbapi.py中</p>
+</div></blockquote>
+</li>
+<li><p class="first">static:</p>
+<blockquote>
+<div><p>显示层,静态显示的CSS,JS文件</p>
+</div></blockquote>
+</li>
+<li><p class="first">templates:</p>
+<blockquote>
+<div><p>显示层,动态显示的html文件</p>
+</div></blockquote>
+</li>
+<li><p class="first">webapp:</p>
+<blockquote>
+<div><p>简单的web框架,处理URL路由,cookie等,基于CGI协议</p>
+</div></blockquote>
+</li>
+<li><p class="first">config.py:</p>
+<blockquote>
+<div><p>全局配置文件(数据库配置,服务器配置)</p>
+</div></blockquote>
+</li>
+<li><p class="first">main.py:</p>
+<blockquote>
+<div><p>服务器启动文件</p>
+</div></blockquote>
+</li>
+<li><p class="first">dbinit.sql:</p>
+<blockquote>
+<div><p>初始建立数据库的脚本文件</p>
+</div></blockquote>
+</li>
+<li><p class="first">README:</p>
+<blockquote>
+<div><p>项目说明文档</p>
+</div></blockquote>
+</li>
+<li><p class="first">Makefile:</p>
+<blockquote>
+<div><p>安装脚本</p>
+</div></blockquote>
+</li>
+<li><p class="first">requirements.txt:</p>
+<blockquote>
+<div><p>安装依赖软件</p>
+</div></blockquote>
+</li>
+<li><p class="first">LICENSE:</p>
+<blockquote>
+<div><p>版权声明</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Installation and Configuration 系统安装及运行</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="documentation.html"
+                        title="next chapter">System 功能说明</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/packagedescription.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="documentation.html" title="System 功能说明"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation and Configuration 系统安装及运行"
+             >previous</a> |</li>
+        <li><a href="index.html">yagra 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Vincent Chan.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>
