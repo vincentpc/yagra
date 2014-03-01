@@ -1,8 +1,6 @@
 
 CREATE DATABASE IF NOT EXISTS `yagra`;
 
-DROP TABLE IF EXISTS `yagra`.`yagra_user_head`;
-DROP TABLE IF EXISTS `yagra`.`yagra_image`;
 DROP TABLE IF EXISTS `yagra`.`yagra_user`;
 
 
@@ -19,31 +17,6 @@ CREATE TABLE `yagra`.`yagra_user` (
   KEY `user_login_key` (`user_login`),
   KEY `user_email_key` (`user_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- 图片表
-CREATE TABLE `yagra`.`yagra_image` (
-  `image_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `filename` varchar(256) NOT NULL,
-  `upload_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`image_id`),
-  KEY `user_id_ind` (`user_id`),
-  CONSTRAINT `yagra_image_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `yagra_user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- 主头像关联表
-CREATE TABLE `yagra`.`yagra_user_head` (
-  `image_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `user_email_md5` char(32) NOT NULL,
-  PRIMARY KEY (`image_id`, `user_id`),
-  KEY `user_email_md5_ind` (`user_email_md5`),
-  CONSTRAINT `yagra_user_head_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `yagra_user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `yagra_user_head_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `yagra_image` (`image_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
 
