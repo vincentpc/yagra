@@ -11,6 +11,8 @@ import datetime
 import calendar
 import email.utils
 import urlparse
+import binascii
+import uuid
 
 import webapp.utils as tool
 import config
@@ -86,7 +88,29 @@ class BaseHandler(object):
     def clear_header(self, name):
         if name in self._headers:
             del self._headers[name]
+            
+    def xsrf_token(self):
+        if not hasattr(self, "_xsrf_token"):
+            token = self.get_cookie("_xsrf")
+            if not token:
+                token = binascii.b2a_hex(uuid.uuid4().bytes)
+                self.set_cookie(name = "_xsrf",value = token)
+            self._xsrf_token = token
+        return self._xsrf_token
+        
+    def xsrf_form_html(self):
+        return '<input type="hidden" name="_xsrf" value="' + \
+            self.xsrf_token + '"/>'
 
+    def check_xsrf_cookie(self):
+
+        token = self.get_argument("_xsrf", None) 
+        if not token:
+            return False
+        if self.xsrf_token != token:
+            return False
+        else return True
+            
     def get_cookies(self):
         return self.request.get_cookies()
 
