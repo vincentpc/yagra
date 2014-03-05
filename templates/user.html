@@ -64,7 +64,8 @@
           <p>
         <form role="form" enctype="multipart/form-data" action="/upload" method="POST">
             <div class="form-group">
-            <input type="file" name="filename">
+                <input type="file" name="filename">
+                %(xsrf_token)s
         </div>
         <button type="submit" class="btn btn-lg btn-primary">Submit</button>
         <h5 class="form-signin-heading">Only JPEG/PNG/GIF(less than 5MB) Supported</h5>

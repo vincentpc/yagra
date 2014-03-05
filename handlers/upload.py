@@ -12,6 +12,10 @@ MAX_FILE_SIZE = 5000000 #upload file size setting < 5MB
 
 class UploadHandler(BaseHandler):
 
+    def check_xsrf(self):
+        if self.check_xsrf_cookie() == False:
+            self.redirect("ftypeerror")
+
     def check(self):
         email = self.get_secure_cookie("email")
         user = dbapi.User()
@@ -32,6 +36,7 @@ class UploadHandler(BaseHandler):
         return size
 
     def post(self):
+        self.check_xsrf()
         self.check()
         fileitem = self.request.files["filename"]
         if fileitem.filename:

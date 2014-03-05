@@ -15,6 +15,6 @@ class IndexHandler(BaseHandler):
             self.redirect("/user")
         else:
             self.clear_cookies()
-            param = {"error_info": error}
+            param = {"error_info": error, "xsrf_token": self.xsrf_from_html()}
             body = self.wrap_html('templates/index.html', param)
             self.write(body)

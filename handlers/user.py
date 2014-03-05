@@ -34,6 +34,7 @@ class UserHandler(BaseHandler):
         else:
             imagetag = """<p class="text-warning">Avatar Not Available. Upload One!</p>""" + \
                 """<img src="static/default.jpg" height="400"  class="rounded" alt="Upload Image Below">"""
-        params = {'name': self.email, 'time': self.time, 'image': imagetag}
+        xsrf_token = self.xsrf_from_html()
+        params = {'name': self.email, 'time': self.time, 'image': imagetag, 'xsrf_token': xsrf_token}
         body = self.wrap_html('templates/user.html', params)
         self.write(body)

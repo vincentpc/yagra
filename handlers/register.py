@@ -7,12 +7,19 @@ from model import dbapi
 
 class RegisterHandler(BaseHandler):
 
+    def check_xsrf(self):
+        if self.check_xsrf_cookie() == False:
+            error = "xsrf invalid"
+            self.get(error)
+
     def get(self, error=""):
-        params = {'error_info': error}
+        xsrf_token = self.xsrf_from_html()
+        params = {'error_info': error, 'xsrf_token': xsrf_token}
         body = self.wrap_html('templates/register.html', params)
         self.write(body)
 
     def post(self):
+        self.check_xsrf()
         email = self.get_arg('email')
         password = self.get_arg('password')
         password2 = self.get_arg('password2')

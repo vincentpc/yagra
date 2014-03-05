@@ -34,6 +34,7 @@
           <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
           Password:
         <input type="password" name="password" class="form-control" placeholder="Password" required>
+        %(xsrf_token)s
         <h4 class="form-signin-heading" style="color:red">
             %(error_info)s
         </h4>
