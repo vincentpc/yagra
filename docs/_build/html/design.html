@@ -83,6 +83,13 @@
 <li>利用时间戳和用户自定义secret串,加密cookie作为用户的验证标准</li>
 </ul>
 </div>
+<div class="section" id="xsrf-webapp-web">
+<h3>XSRF (webapp.web)<a class="headerlink" href="#xsrf-webapp-web" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>仿照Tornado生成随机xsrf cookie原理</li>
+<li>用uuid生成随机串,在所有post表单中加入xsrf的cookie作为核对标准,与post表单一起提交后在服务器后台核对</li>
+</ul>
+</div>
 </div>
 <div class="section" id="id2">
 <h2>数据库设计<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -122,6 +129,7 @@
 <li><a class="reference internal" href="#response-webapp-web-basehandler">Response (webapp.web.BaseHandler)</a></li>
 <li><a class="reference internal" href="#template-webapp-web-basehandler">Template (webapp.web.BaseHandler)</a></li>
 <li><a class="reference internal" href="#cookie-webapp-utils">Cookie (webapp.utils)</a></li>
+<li><a class="reference internal" href="#xsrf-webapp-web">XSRF (webapp.web)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#id2">数据库设计</a><ul>

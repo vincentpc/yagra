@@ -52,6 +52,12 @@ Cookie (webapp.utils)
 * 利用时间戳和用户自定义secret串,加密cookie作为用户的验证标准
 
 
+XSRF (webapp.web)
+------------------------
+
+* 仿照Tornado生成随机xsrf cookie原理
+
+* 用uuid生成随机串,在所有post表单中加入xsrf的cookie作为核对标准,与post表单一起提交后在服务器后台核对
 
 
 .. _database_design
