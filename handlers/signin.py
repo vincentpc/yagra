@@ -9,6 +9,7 @@ class SigninHandler(BaseHandler):
 
     def post(self):
         email = self.get_arg("email")
+        email = email.strip()
         password = self.get_arg("password")
         if self.check_xsrf_cookie() == False:
             error = "Xsrf Token Invalid"

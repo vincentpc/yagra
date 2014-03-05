@@ -21,6 +21,7 @@ class RegisterHandler(BaseHandler):
     def post(self):
         self.check_xsrf()
         email = self.get_arg('email')
+        email = email.strip()
         password = self.get_arg('password')
         password2 = self.get_arg('password2')
 
