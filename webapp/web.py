@@ -92,7 +92,7 @@ class BaseHandler(object):
     def xsrf_token(self):
         if not hasattr(self, "_xsrf_token"):
             token = self.get_cookie("_xsrf")
-            if not token:
+            if token == "" or token == None:
                 token = binascii.b2a_hex(uuid.uuid4().bytes)
                 self.set_cookie(name="_xsrf", value=token)
             self._xsrf_token = token

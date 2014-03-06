@@ -14,7 +14,7 @@ class IndexHandler(BaseHandler):
         if email and user.get_user(email) == 0:
             self.redirect("/user")
         else:
-            self.clear_cookies()
+            #self.clear_cookies()
             param = {"error_info": error, "xsrf_token": self.xsrf_from_html()}
             body = self.wrap_html('templates/index.html', param)
             self.write(body)
