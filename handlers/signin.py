@@ -12,7 +12,7 @@ class SigninHandler(BaseHandler):
         email = email.strip()
         password = self.get_arg("password")
         if self.check_xsrf_cookie() == False:
-            error = "Xsrf Token Invalid"
+            error = "Xsrf Token Invalid, Try Again"
         elif email:
             user = dbapi.User()
             if user.check_user(email, password) == 0:
