@@ -151,9 +151,8 @@ Apache2服务器设置
         # Possible values include: debug, info, notice, warn, error, crit,
         # alert, emerg.
         LogLevel warn
-
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
+      </VirtualHost>
 
 
 
