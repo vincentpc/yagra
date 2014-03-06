@@ -49,7 +49,7 @@ class PasswordHandler(BaseHandler):
             if result != -1:
                 error = "Update Password Successfully"
             else:
-                error = "Update falure, try again later"
+                error = "Update failure, try again later"
         else:
             if password != password2:
                 error = "new password inconsistent"
