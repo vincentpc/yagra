@@ -202,7 +202,8 @@ Documentation
 CHANGELOG
 ===============   
 
+2014.3.5   1.1 beta release
+
 2014.2.27  beta release
 
-2013.2.28  document added
 
