@@ -6,6 +6,8 @@ What
 ===============
 
 
+訪問網址:  http://vincentpc.servehttp.com:8080
+
 一个提供avatar hosting服务的站点
 
 你可以在yagar上管理你的头像
